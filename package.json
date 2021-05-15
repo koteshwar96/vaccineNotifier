@@ -1,0 +1,27 @@
+{
+  "name": "vaccinenotifier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd src && babel-node  index.js"
+  },
+  "author": "Koteshwar Rao",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^9.0.2",
+    "moment": "^2.29.1",
+    "pm2": "^4.5.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.2",
+    "@babel/node": "^7.14.2",
+    "@babel/plugin-transform-runtime": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "node-cron": "^3.0.0",
+    "nodemailer": "^6.6.0"
+  }
+}
