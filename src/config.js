@@ -1,14 +1,15 @@
 const searchBy = "district"
-// if you want to search by  pinCode then searchBy is "pinCode"
-// if you want to search by  district then searchBy is "district"
+// if you want to search by  pinCode then set searchBy to "pinCode"
+// if you want to search by  district then set searchBy to "district"
 const pinCode = "506330"
-const stateName = "Jharkhand"
-const districtName = "Dhanbad"
-const noOfDaysToCheck = 2
+const stateName = "Odisha"
+const districtName = "Khurda"
+const noOfDaysToCheck = 1
 const age = 47
 const preferredVaccines= ["COVAXIN"]
 // this is an array of preferredVaccines
 // if preferredVaccines is empty then we consider all vaccines as preferredVaccines
+const doseNumber = 1
 
 const email = ""
 const password = ""
@@ -23,6 +24,7 @@ export const configuration = {
     noOfDaysToCheck: noOfDaysToCheck,
     age:age,
     preferredVaccines:preferredVaccines,
+    doseNumber: doseNumber,
     email:email,
     password:password,
     searchByPinCodeUrl: "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin",

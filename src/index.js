@@ -28,11 +28,12 @@ async function checkAvailability(){
     }
 
     let mailContent =[]
+    let content
+    let doseNumberCapacity = "available_capacity_dose"+configuration.doseNumber
     for (let center of centers){
         for (let session of center.sessions){
-            let content
-            if (session.min_age_limit <= configuration.age && session.available_capacity > 0 && (configuration.preferredVaccines.length > 0 || configuration.preferredVaccines.indexOf(session.vaccine))){
-                content = "vaccine: "+session.vaccine+"\nmin_age_limit: "+session.min_age_limit+"\ndate: "+session.date+"\navailable_capacity: "+session.available_capacity+"\n"+ center.name + "\n"+center.address+"\n\n"
+            if (session.min_age_limit <= configuration.age && session[doseNumberCapacity] >0 && (configuration.preferredVaccines.length > 0 || configuration.preferredVaccines.indexOf(session.vaccine))){
+                content ="vaccine: "+session.vaccine+"\nmin_age_limit: "+session.min_age_limit+"\ndate: "+session.date+"\navailable_capacity (dose number: "+ configuration.doseNumber+"): "+session[doseNumberCapacity]+"\n"+ center.name + "\n"+center.address+"\n\n"
                 mailContent.push(content)
             }
         }
