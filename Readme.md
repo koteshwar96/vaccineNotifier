@@ -2,47 +2,49 @@
 
 This application checks the Co-Win portal periodically i.e every 15 mins to find if vaccination slots available as per your requirement
 
+There are various configurable constraints like age, preferred vaccines,dose number
 
 You can check vaccine Availability either by searchByDistrict / searchByPinCode
 
-There are various configurable params like age, preferred vaccines
-
 As soon there is an availability of vaccine slot as per your requirement, you would be notified over e-mail.
+
+Sample E-Mail content,
 
 ````
 YaY!! Vaccine slots are available. Details are,
 
-vaccine: COVISHIELD
-min_age_limit: 18
-date: 17-05-2021
-available_capacity: 3
-PHNT GIALGORA GOVINDPUR 2.0
-GIALGORA GOVINDPUR
+vaccine: COVAXIN
+min_age_limit: 45
+date: 26-05-2021
+available_capacity (dose number: 1): 55
+Ghatikia UPHC
+In Front Of Jayadev Vatika Ghatikia
 
-,vaccine: COVISHIELD
-min_age_limit: 18
-date: 16-05-2021
-available_capacity: 1
-BARWA GOVINDPUR 2.0
-BARWA GOVINDPUR DHANABD
+,vaccine: COVAXIN
+min_age_limit: 45
+date: 27-05-2021
+available_capacity (dose number: 1): 68
+Ghatikia UPHC
+In Front Of Jayadev Vatika Ghatikia
 
-,vaccine: COVISHIELD
-min_age_limit: 18
-date: 17-05-2021
-available_capacity: 2
-BARWA GOVINDPUR 2.0
-BARWA GOVINDPUR DHANABD
+,vaccine: COVAXIN
+min_age_limit: 45
+date: 28-05-2021
+available_capacity (dose number: 1): 19
+Ghatikia UPHC
+In Front Of Jayadev Vatika Ghatikia
 ````
 
 
-### Steps to run the script:
-````
-1. Enable application access on your gmail with steps given here: https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor&visit_id=637554658548216477-2576856839&rd=1
+### Steps to get started with the application:
 
-2. Enter your details in config.js in src folder. You can modify params as per your requirement
+1. Install nodejs if not installed already (https://nodejs.dev/learn/how-to-install-nodejs )
 
-3. npm install   
-    npm start
+2.  In order to send emails, enable application access on your gmail with steps given here: https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor&visit_id=637554658548216477-2576856839&rd=1
     
-4. To keep the process running in background you use cmds like nohup
-````
+3. Enter your details and constraints in config.js in src folder like mail Id, password, age, preferred vaccines, dose numbers, searchPreference as per your requirement
+
+4. To start application enter the following command in terminal
+   ````
+   npm install && npm start
+   ````
