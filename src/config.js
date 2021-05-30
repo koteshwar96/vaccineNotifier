@@ -3,11 +3,11 @@ const searchBy = "district"
 // if you want to search by  district then set searchBy to "district"
 const pinCode = "506330"
 //You need to enter valid pinCode if you select searchBy as pinCode
-const stateName = "Odisha"
-const districtName = "Khurda"
+const stateName = "Telangana"
+const districtName = "Warangal(Urban)"
 // You need to enter valid state name and district name if you select searchBy as district
 
-const age = 47
+const age = 25
 const preferredVaccines= ["COVAXIN"]
 // this is an array of preferredVaccines
 // if preferredVaccines is empty i.e. [] then we consider all vaccines as preferredVaccines

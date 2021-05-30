@@ -4,11 +4,20 @@ const {configuration} = require("./config")
 const moment = require('moment');
 const cron = require('node-cron');
 
+let districtCode
+let stateCode
+
 async function main(){
     try {
-        await checkAvailability()
-        cron.schedule('*/15 * * * *', async () => {
-             await checkAvailability();
+        districtCode = 0
+        stateCode = 0
+
+        // setInterval(async()=>{
+        //     await checkAvailability();
+        // },300000)
+
+        cron.schedule('*/2 * * * *', async () => {
+            await checkAvailability();
         });
     }catch (e){
         console.log("Exception caught ",e)
@@ -32,7 +41,7 @@ async function checkAvailability(){
     let doseNumberCapacity = "available_capacity_dose"+configuration.doseNumber
     for (let center of centers){
         for (let session of center.sessions){
-            if (session.min_age_limit <= configuration.age && session[doseNumberCapacity] >0 && (configuration.preferredVaccines.length > 0 || configuration.preferredVaccines.indexOf(session.vaccine))){
+            if (session.min_age_limit <= configuration.age && session[doseNumberCapacity] >1 && (configuration.preferredVaccines.length > 0 || configuration.preferredVaccines.indexOf(session.vaccine))){
                 content ="vaccine: "+session.vaccine+"\nmin_age_limit: "+session.min_age_limit+"\ndate: "+session.date+"\navailable_capacity (dose number: "+ configuration.doseNumber+"): "+session[doseNumberCapacity]+"\n"+ center.name + "\n"+center.address+"\n\n"
                 mailContent.push(content)
             }
@@ -40,7 +49,7 @@ async function checkAvailability(){
     }
 
 
-    if( mailContent.length > 0 ){
+    if (mailContent.length > 0 ){
         sendEmail(configuration.email,'VACCINE AVAILABLE',mailContent)
     }
 
@@ -56,8 +65,11 @@ async function checkAvailabilityByPinCode(dates){
 }
 
 async function checkAvailabilityByDistrict(dates){
-    let stateCode =  await getStateCode(configuration.StateName)
-    let districtCode = await getDistrictCode(stateCode, configuration.DistrictName)
+    if (stateCode === 0 || districtCode === 0){
+        stateCode =  await getStateCode(configuration.StateName)
+        districtCode = await getDistrictCode(stateCode, configuration.DistrictName)
+    }
+
     let slots = []
     for (const date of dates) {
         let slot = await getAvailabilityByDistrictCode(districtCode,date)
