@@ -11,16 +11,12 @@ async function main(){
     try {
         districtCode = 0
         stateCode = 0
-
-        // setInterval(async()=>{
-        //     await checkAvailability();
-        // },300000)
-
-        cron.schedule('*/2 * * * *', async () => {
+        await checkAvailability();
+        cron.schedule('*/1 * * * *', async () => {
             await checkAvailability();
         });
     }catch (e){
-        console.log("Exception caught ",e)
+        console.log("Exception caught ",e.error())
     }
 }
 
@@ -101,7 +97,7 @@ async function getStateCode(stateName){
             }
         }
 
-        console.log("State Name did not match with any of the state names available. Please refer to the state Names")
+        console.log("State Name did not match with any of the state names available. Please refer to the state Names. It is case sensitive")
         stateCodes.data.states.forEach(entry =>{
             console.log(entry.state_name)
         })
@@ -128,7 +124,7 @@ async function getDistrictCode(stateCode,districtName){
             }
         }
 
-        console.log("District Name did not match with any of the district names available. Please refer to the district Names")
+        console.log("District Name did not match with any of the district names available. Please refer to the district Names. It is case sensitive")
         districtCodes.forEach(entry =>{
             console.log(entry.district_name)
         })
